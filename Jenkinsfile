@@ -57,8 +57,10 @@ environment {
                     // install pipeline-utility-steps plugin for the ReadMavenPom method
                     def mavenPom = readMavenPom file: 'pom.xml'
                     POM_VERSION = "${mavenPom.version}"
+                    APP_NAME = "${mavenPom.name}"
                     echo "${POM_VERSION}"
-                    sh 'curl -uadmin:AP77hxSx85EFzMRQD9h9k5NQR1N -T target/bioMedical-0.0.1-SNAPSHOT.jar http://172.234.203.14:8081/artifactory/geolocation/1.0/bioMedical-0.0.1-SNAPSHOT.jar'
+                    echo "${APP_NAME}"
+                    sh "curl -uadmin:AP77hxSx85EFzMRQD9h9k5NQR1N -T target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/geolocation/${POM_VERSION}/${APP_NAME}-${POM_VERSION}.jar"
                     //dockerImage = docker.build registry + ":${POM_VERSION}"
                 } 
             }
