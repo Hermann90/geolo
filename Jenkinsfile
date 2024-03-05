@@ -53,10 +53,11 @@ environment {
             
             steps {
                 script{
-                  def mavenPom = readMavenPom file: 'pom.xml'
-                  POM_VERSION = "${mavenPom.version}"
-                  echo "${POM_VERSION}"
-                  dockerImage = docker.build registry + ":${POM_VERSION}"
+                    // install pipeline-utility-steps plugin for the ReadMavenPom method
+                    def mavenPom = readMavenPom file: 'pom.xml'
+                    POM_VERSION = "${mavenPom.version}"
+                    echo "${POM_VERSION}"
+                    //dockerImage = docker.build registry + ":${POM_VERSION}"
                 } 
             }
         }
