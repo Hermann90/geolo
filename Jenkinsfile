@@ -18,29 +18,29 @@ environment {
      NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
      POM_VERSION = ''
 }
-    // stages {
+    stages {
 
-    //     stage("build & SonarQube analysis") {  
-    //         steps {
-    //             echo 'build & SonarQube analysis...'
-    //            withSonarQubeEnv('SonarServer') {
-    //                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Hermann90_geo -X'
-    //            }
-    //         }
-    //       }
-    //     stage('Check Quality Gate') {
-    //         steps {
-    //             echo 'Checking quality gate...'
-    //              script {
-    //                  timeout(time: 20, unit: 'MINUTES') {
-    //                      def qg = waitForQualityGate()
-    //                      if (qg.status != 'OK') {
-    //                          error "Pipeline stopped because of quality gate status: ${qg.status}"
-    //                      }
-    //                  }
-    //              }
-    //         }
-    //     }
+        // stage("build & SonarQube analysis") {  
+        //     steps {
+        //         echo 'build & SonarQube analysis...'
+        //        withSonarQubeEnv('SonarServer') {
+        //            sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Hermann90_geo -X'
+        //        }
+        //     }
+        // }
+        // stage('Check Quality Gate') {
+        //     steps {
+        //         echo 'Checking quality gate...'
+        //          script {
+        //              timeout(time: 20, unit: 'MINUTES') {
+        //                  def qg = waitForQualityGate()
+        //                  if (qg.status != 'OK') {
+        //                      error "Pipeline stopped because of quality gate status: ${qg.status}"
+        //                  }
+        //              }
+        //          }
+        //     }
+        // }
         
          
         stage('maven package') {
