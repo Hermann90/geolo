@@ -50,7 +50,7 @@ environment {
                 sh 'ls target'
             }
         }
-        stage('Build Image') {
+        stage('PUSH JFROG') {
             
             steps {
                 script{
@@ -58,6 +58,7 @@ environment {
                     def mavenPom = readMavenPom file: 'pom.xml'
                     POM_VERSION = "${mavenPom.version}"
                     echo "${POM_VERSION}"
+                    SH 'curl -uadmin:AP77hxSx85EFzMRQD9h9k5NQR1N -T target/bioMedical-0.0.1-SNAPSHOT.jar http://172.234.203.14:8081/artifactory/geolocation/1.0/bioMedical-0.0.1-SNAPSHOT.jar'
                     //dockerImage = docker.build registry + ":${POM_VERSION}"
                 } 
             }
