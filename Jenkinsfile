@@ -57,7 +57,7 @@ environment {
                     def mavenPom = readMavenPom file: 'pom.xml'
                     POM_VERSION = "${mavenPom.version}"
                     echo "${POM_VERSION}"
-                    //dockerImage = docker.build registry + ":${POM_VERSION}"
+                    dockerImage = docker.build registry + ":${POM_VERSION}"
                 } 
             }
         }
