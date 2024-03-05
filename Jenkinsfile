@@ -47,6 +47,7 @@ environment {
             steps {
                 sh 'mvn clean'
                 sh 'mvn package -DskipTests'
+                sh 'ls target'
             }
         }
         stage('Build Image') {
