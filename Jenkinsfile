@@ -49,25 +49,6 @@ environment {
                 sh 'mvn clean'
                 sh 'mvn package -DskipTests'
                 sh 'ls target'
-
-                // Show the installed version of JFrog CLI.
-	            jf '-v'
-
-	            // Show the configured JFrog Platform instances.
-	            jf 'c show'
-
-	            // Ping Artifactory.
-	            jf 'rt ping'
-
-	            // Create a file and upload it to a repository named 'my-test-repo' in Artifactory
-	            sh 'touch test-file'
-	            jf 'rt u test-file geolocation/test-file'
-
-	            // Publish the build-info to Artifactory.
-	            jf 'rt bp'
-
-	        // Download the test-file
-	        jf 'rt dl geolocation/test-file'
             }
         }
         stage('PUSH JFROG') {
@@ -80,7 +61,8 @@ environment {
                     APP_NAME = "${mavenPom.name}"
                     echo "${POM_VERSION}"
                     echo "${APP_NAME}"
-                    jf "rt u target/${APP_NAME}-${POM_VERSION}.jar geolocation/${APP_NAME}-${POM_VERSION}.jar"
+                    jfrog rt upload --flat=false "target/${APP_NAME}-${POM_VERSION}.jar" geolocation/
+                    //jf "rt u target/${APP_NAME}-${POM_VERSION}.jar geolocation/${APP_NAME}-${POM_VERSION}.jar"
                     //sh "curl -uadmin:AP77hxSx85EFzMRQD9h9k5NQR1N -T target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/geolocation/${POM_VERSION}/${APP_NAME}-${POM_VERSION}.jar"
                     //dockerImage = docker.build registry + ":${POM_VERSION}"
                 } 
