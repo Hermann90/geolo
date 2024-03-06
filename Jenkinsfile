@@ -61,7 +61,7 @@ environment {
                     APP_NAME = "${mavenPom.name}"
                     echo "${POM_VERSION}"
                     echo "${APP_NAME}"
-                    jfrog rt upload --flat=false "target/${APP_NAME}-${POM_VERSION}.jar" geolocation/
+                    jfrog rt upload --flat=false "target/${APP_NAME}-${POM_VERSION}.jar geolocation/"
                     //jf "rt u target/${APP_NAME}-${POM_VERSION}.jar geolocation/${APP_NAME}-${POM_VERSION}.jar"
                     //sh "curl -uadmin:AP77hxSx85EFzMRQD9h9k5NQR1N -T target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/geolocation/${POM_VERSION}/${APP_NAME}-${POM_VERSION}.jar"
                     //dockerImage = docker.build registry + ":${POM_VERSION}"
