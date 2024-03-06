@@ -5,6 +5,7 @@ pipeline {
    agent any
     tools {
   maven 'M2_HOME'
+  jfrog 'Jfrog remote cli'
 }
 environment {
     registry = '076892551558.dkr.ecr.us-east-1.amazonaws.com/jenkins'
