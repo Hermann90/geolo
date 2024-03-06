@@ -61,7 +61,7 @@ environment {
 
 	            // Create a file and upload it to a repository named 'my-test-repo' in Artifactory
 	            sh 'touch test-file'
-	            jf 'rt u test-file geolocation/'
+	            jf 'rt u test-file geolocation/test-file'
 
 	            // Publish the build-info to Artifactory.
 	            jf 'rt bp'
