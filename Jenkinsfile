@@ -19,7 +19,7 @@ environment {
      NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
      POM_VERSION = ''
 }
-    def jfrogInstance = JFrog.instance 172.234.203.14
+    def jfrogInstance = JFrog.instance SERVER_JFROG_ID
     def rtServer = jfrogInstance.artifactory
     def dsServer = jfrogInstance.distribution
     stages {
