@@ -64,10 +64,7 @@ pipeline {
                     APP_NAME = "${mavenPom.name}"
                     echo "${POM_VERSION}"
                     echo "${APP_NAME}"
-                    sh 'jfrog rt mvn -f pom.xml clean install' // build & deploy artifacts
-                    sh 'jfrog rt bp' // publish build info
-
-                    //jfrog "rt upload target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/geolocation/"
+                    jfrog "rt upload target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/example-repo-local/"
                     // sh 'touch test-file'
 	                // jfrog 'rt u test-file http://172.234.203.14:8081/artifactory/geolocation/'
                     //jf "rt u target/${APP_NAME}-${POM_VERSION}.jar geolocation/${APP_NAME}-${POM_VERSION}.jar"
