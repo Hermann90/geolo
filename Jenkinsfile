@@ -27,7 +27,7 @@ pipeline {
                     APP_NAME = "${mavenPom.name}"
                     echo "${POM_VERSION}"
                     echo "${APP_NAME}"
-                    sh "curl -uadmin:password -T target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/geolocation/${APP_NAME}-${POM_VERSION}.jar"
+                    sh "curl -u${JFROG_USER}:${JFROG_PASSWORD} -T target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/geolocation/${APP_NAME}-${POM_VERSION}.jar"
                 } 
             }
         }    	    
