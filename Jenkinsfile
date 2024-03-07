@@ -19,6 +19,9 @@ environment {
      NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
      POM_VERSION = ''
 }
+    def jfrogInstance = JFrog.instance 172.234.203.14
+    def rtServer = jfrogInstance.artifactory
+    def dsServer = jfrogInstance.distribution
     stages {
 
         // stage("build & SonarQube analysis") {  
@@ -70,6 +73,22 @@ environment {
                 } 
             }
         }
+
+        stage ("Upload file") {
+        def uploadSpec = """{
+            "files": [
+                {
+                    "pattern": "target/${APP_NAME}-${POM_VERSION}.jar",
+                    "target": "geolocation"
+                }
+            ]
+        }"""
+        rtServer.upload spec: uploadSpec
+    }
+
+
+
+
         // stage('Deploy image') {
         //     steps{
         //         script{ 
