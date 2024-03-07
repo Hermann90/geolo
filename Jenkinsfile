@@ -7,18 +7,18 @@ pipeline {
   maven 'M2_HOME'
   jfrog 'Jfrog remote cli'
 }
-environment {
-    registry = '076892551558.dkr.ecr.us-east-1.amazonaws.com/jenkins'
-    registryCredential = 'jenkins-ecr'
-    dockerimage = ''
+//environment {
+//     registry = '076892551558.dkr.ecr.us-east-1.amazonaws.com/jenkins'
+//     registryCredential = 'jenkins-ecr'
+//     dockerimage = ''
 
-     NEXUS_VERSION = "nexus3"
-     NEXUS_PROTOCOL = "http"
-     NEXUS_URL = "139.177.192.139:8081"
-     NEXUS_REPOSITORY = "utrains-nexus-pipeline"
-     NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
-     POM_VERSION = ''
-}
+//      NEXUS_VERSION = "nexus3"
+//      NEXUS_PROTOCOL = "http"
+//      NEXUS_URL = "139.177.192.139:8081"
+//      NEXUS_REPOSITORY = "utrains-nexus-pipeline"
+//      NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
+//      POM_VERSION = ''
+// }
     // def jfrogInstance = JFrog.instance SERVER_JFROG_ID
     // def rtServer = jfrogInstance.artifactory
     // def dsServer = jfrogInstance.distribution
@@ -64,7 +64,7 @@ environment {
                     APP_NAME = "${mavenPom.name}"
                     echo "${POM_VERSION}"
                     echo "${APP_NAME}"
-                    jfrog "rt upload target/${APP_NAME}-${POM_VERSION}.jar geolocation/"
+                    jfrog "rt upload target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/geolocation/"
                     sh 'touch test-file'
 	                jfrog 'rt u test-file http://172.234.203.14:8081/artifactory/geolocation/'
                     //jf "rt u target/${APP_NAME}-${POM_VERSION}.jar geolocation/${APP_NAME}-${POM_VERSION}.jar"
@@ -74,22 +74,22 @@ environment {
             }
         }
 
-       stage ('Upload file') {
-            steps {
-                rtUpload (
-                    // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-                    serverId: SERVER_JFROG_ID,
-                    spec: """{
-                            "files": [
-                                    {
-                                        "pattern": "target/${APP_NAME}-${POM_VERSION}.jar",
-                                        "target": "geolocation"
-                                    }
-                                ]
-                            }"""
-                )
-            }
-        }
+    //    stage ('Upload file') {
+    //         steps {
+    //             rtUpload (
+    //                 // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
+    //                 serverId: SERVER_JFROG_ID,
+    //                 spec: """{
+    //                         "files": [
+    //                                 {
+    //                                     "pattern": "target/${APP_NAME}-${POM_VERSION}.jar",
+    //                                     "target": "geolocation"
+    //                                 }
+    //                             ]
+    //                         }"""
+    //             )
+    //         }
+    //     }
 
 
 
