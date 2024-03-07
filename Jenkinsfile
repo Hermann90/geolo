@@ -64,7 +64,7 @@ pipeline {
                     APP_NAME = "${mavenPom.name}"
                     echo "${POM_VERSION}"
                     echo "${APP_NAME}"
-                    jfrog "rt upload target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/example-repo-local/"
+                    jf "rt upload target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/example-repo-local/"
                     // sh 'touch test-file'
 	                // jfrog 'rt u test-file http://172.234.203.14:8081/artifactory/geolocation/'
                     //jf "rt u target/${APP_NAME}-${POM_VERSION}.jar geolocation/${APP_NAME}-${POM_VERSION}.jar"
