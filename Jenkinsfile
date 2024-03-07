@@ -19,9 +19,9 @@ environment {
      NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
      POM_VERSION = ''
 }
-    def jfrogInstance = JFrog.instance SERVER_JFROG_ID
-    def rtServer = jfrogInstance.artifactory
-    def dsServer = jfrogInstance.distribution
+    // def jfrogInstance = JFrog.instance SERVER_JFROG_ID
+    // def rtServer = jfrogInstance.artifactory
+    // def dsServer = jfrogInstance.distribution
     stages {
 
         // stage("build & SonarQube analysis") {  
@@ -66,7 +66,7 @@ environment {
                     echo "${APP_NAME}"
                     jfrog "rt upload target/${APP_NAME}-${POM_VERSION}.jar geolocation/"
                     sh 'touch test-file'
-	                jfrog 'rt u test-file http://172.234.203.14:8081/artifactory/example-repo-local/'
+	                jfrog 'rt u test-file http://172.234.203.14:8081/artifactory/geolocation/'
                     //jf "rt u target/${APP_NAME}-${POM_VERSION}.jar geolocation/${APP_NAME}-${POM_VERSION}.jar"
                     //sh "curl -uadmin:AP77hxSx85EFzMRQD9h9k5NQR1N -T target/${APP_NAME}-${POM_VERSION}.jar http://172.234.203.14:8081/artifactory/geolocation/${POM_VERSION}/${APP_NAME}-${POM_VERSION}.jar"
                     //dockerImage = docker.build registry + ":${POM_VERSION}"
@@ -74,17 +74,22 @@ environment {
             }
         }
 
-        stage ("Upload file") {
-        def uploadSpec = """{
-            "files": [
-                {
-                    "pattern": "target/${APP_NAME}-${POM_VERSION}.jar",
-                    "target": "geolocation"
-                }
-            ]
-        }"""
-        rtServer.upload spec: uploadSpec
-    }
+       stage ('Upload file') {
+            steps {
+                rtUpload (
+                    // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
+                    serverId: SERVER_JFROG_ID,
+                    spec: """{
+                            "files": [
+                                    {
+                                        "pattern": "target/${APP_NAME}-${POM_VERSION}.jar",
+                                        "target": "geolocation"
+                                    }
+                                ]
+                            }"""
+                )
+            }
+        }
 
 
 
