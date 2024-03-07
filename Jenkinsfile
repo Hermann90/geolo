@@ -7,9 +7,7 @@ pipeline {
   maven 'M2_HOME'
   jfrog 'Jfrog remote cli'
 }
-
     stages {
-
         stage('maven package') {
             steps {
                 sh 'mvn clean'
@@ -17,8 +15,7 @@ pipeline {
                 sh 'ls target'
             }
         }
-        stage('PUSH JFROG') {
-            
+        stage('PUSH JFROG') {   
             steps {
                 script{
                     // install pipeline-utility-steps plugin for the ReadMavenPom method
