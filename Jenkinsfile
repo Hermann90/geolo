@@ -7,6 +7,28 @@ pipeline {
         SONAR_HOST_URL = 'http://54.177.126.245:9000'
         ARTIFACTORY_URL = 'http://54.177.126.245:8082'
         ARTIFACTORY_REPO = 'your-repo-name'
+
+        AWS_REGION = 'us-east-1'
+        SCANNER_HOME= tool 'sonar'
+        ARTIFACTORY_URL=  'http://54.177.126.245:8082/artifactory'
+        REPO = 'geolocation'
+        APP_NAME = 'geoapp'
+        APP_OWNER = 'cloud_team'
+        DOCKER_REPO_NAME = "${APP_NAME}"
+        REPO_URL     = 'public.ecr.aws/g0j7o9l5'
+        DOCKER_REPO = "${REPO_URL}/${DOCKER_REPO_NAME}"
+        BRANCH_NAME= 'main'
+        GIT_CRED = 'GITHUB_CRED'
+        KUBERNETES_CRED = 'KUBERNETES_CRED'
+        KUBERNETES_URL = 'https://104.237.133.213:6443'
+        SONAQUBE_CRED = 'sonarqube_ID'
+        SONAQUBE_INSTALLATION = 'Sonarqube'
+        JFROG_CRED = 'j_frog-cred'
+        PROJECT_URL = 'https://github.com/Hermann90/geolo.git'
+        ARTIFACTPATH = 'target/*.jar'
+        ARTIFACTTARGETPATH = "release_${BUILD_ID}.jar"
+        HELMARTIFACTPATH = "geoapp-${BUILD_ID}.tgz"
+        HELMARTIFACTTARGET = "heml/geoapp-${BUILD_ID}.tgz"
     }
 
     stages {
@@ -14,6 +36,14 @@ pipeline {
             steps {
                 // Pull code from Git
                 git branch: 'main', url: env.GIT_REPO
+            }
+        }
+
+        stage('Unit Test'){
+            steps{
+                sh 'mvn clean'
+                sh 'mvn compile '
+                sh 'mvn test'
             }
         }
 
