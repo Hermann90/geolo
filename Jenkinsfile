@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        maven 'M2_HOME'
+    }
     environment {
         // Define environment variables
         GIT_REPO = 'https://github.com/Hermann90/geolo.git'
