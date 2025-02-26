@@ -5,7 +5,7 @@ pipeline {
         // Define environment variables
         GIT_REPO = 'https://github.com/Hermann90/geolo.git'
         SONAR_HOST_URL = 'http://54.177.126.245:9000'
-        ARTIFACTORY_URL = 'http://54.177.126.245:8082'
+        //ARTIFACTORY_URL = 'http://54.177.126.245:8082'
         ARTIFACTORY_REPO = 'your-repo-name'
 
         AWS_REGION = 'us-east-1'
