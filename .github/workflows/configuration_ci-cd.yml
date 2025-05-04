@@ -56,6 +56,6 @@ jobs:
       run: mvn -B package -DskipTests
       
     - name: Deploy to GitHub Packages
-      run: mvn deploy -DskipTests -DrepositoryId=repo-id -Durl=https://maven.pkg.github.com/hermann90/geolo #-Dusername=user -Dpassword=pass
+      run: mvn deploy -DskipTests -DaltDeploymentRepository=repo-id -Durl=https://maven.pkg.github.com/hermann90/geolo #-Dusername=user -Dpassword=pass
       env:
         GITHUB_TOKEN: ${{ github.token }}
