@@ -2,8 +2,8 @@ package com.spring.bioMedical.service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+//import javax.persistence.EntityManager;
+//import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
