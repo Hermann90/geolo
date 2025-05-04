@@ -1,4 +1,4 @@
-INSERT INTO USER (id, confirmation_token, username, enabled, first_name, last_name, gender, password, authority, lastseen)
+INSERT INTO "USER" (id, confirmation_token, username, enabled, first_name, last_name, gender, password, authority, lastseen)
 VALUES
 (3, 'AAAAAAA', 'student@utrains.test', 1, 'student', 'Utrains student', 'Male', 'school1', 'ROLE_ADMIN', '05/01/2022'),
 (4, 'BBBBBBB', 'root@utrains.test', 1, 'root','Utrains ROOT','Female', 'root_pass', 'ROLE_USER', '05/01/2022'),
