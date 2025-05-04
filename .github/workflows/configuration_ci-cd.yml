@@ -8,11 +8,11 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        java: [ '17' ]
+#    strategy:
+#      matrix:
+#        java: [ '17' ]
     runs-on: ubuntu-latest
-    name: Java ${{ matrix.java }} Build
+    name: Java 17 build #${{ matrix.java }} Build
 
     steps:
     - uses: actions/checkout@v4
