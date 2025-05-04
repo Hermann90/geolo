@@ -59,7 +59,7 @@ jobs:
       run: |
           echo $GIT_HUB_TOKEN
           echo $GITHUB_USERNAME
-          mvn deploy -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/hermann90/geolo -X #-Dusername=user -Dpassword=pass
+          mvn deploy -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/Hermann90/geolo -X #-Dusername=user -Dpassword=pass
       env:
         #GITHUB_TOKEN: ${{ github.token }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
