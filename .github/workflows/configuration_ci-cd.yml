@@ -62,7 +62,7 @@ jobs:
           curl -u $MAVEN_USERNAME:$MAVEN_PASSWORD http://3.129.71.240:8081/artifactory/api/system/ping
           pwd
           ls
-          VERSION=$(`grep -m2 '<version>' pom.xml | tail -1 | grep -oP '(?<=>).*(?=<)'`)
+          VERSION=`grep -m2 '<version>' pom.xml | tail -1 | grep -oP '(?<=>).*(?=<)'`
           echo $VERSION
           #curl -v --user $MAVEN_USERNAME:$MAVEN_PASSWORD --data-binary @Dockerfile -X PUT "http://3.129.71.240:8081/artifactory/GEOLOCATION-GITHUB_ACTION/remotefile"
           #mvn deploy -DskipTests -DaltDeploymentRepository=central::default::http://3.129.71.240:8081/artifactory/GEOLOCATION-GITHUB_ACTION -X #-Dusername=user -Dpassword=pass
