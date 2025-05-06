@@ -71,9 +71,8 @@ jobs:
           APP_LONG_NAME=$APP_NAME-$APP_VERSION.jar
           echo $APP_LONG_NAME
           echo $MAVEN_USERNAME
-          echo $TOTO2
-          echo curl -v --user ${{ secrets.ARTIFACTORY_USERNAME }}:${{ secrets.ARTIFACTORY_PASSWORD }} -T target/$APP_LONG_NAME -X PUT "http://3.129.71.240:8081/artifactory/GEOLOCATION-GITHUB_ACTION/$APP_LONG_NAME"
-          curl -v --user ${{ secrets.ARTIFACTORY_USERNAME }}:${{ secrets.ARTIFACTORY_PASSWORD }} -T target/$APP_LONG_NAME -X PUT "http://3.129.71.240:8081/artifactory/GEOLOCATION-GITHUB_ACTION/$APP_LONG_NAME"
+          echo curl -v --user $MAVEN_USERNAME:$MAVEN_PASSWORD -T target/$APP_LONG_NAME -X PUT "http://3.129.71.240:8081/artifactory/GEOLOCATION-GITHUB_ACTION/$APP_LONG_NAME"
+          curl -v --user $MAVEN_USERNAME:$MAVEN_PASSWORD -T target/$APP_LONG_NAME -X PUT "http://3.129.71.240:8081/artifactory/GEOLOCATION-GITHUB_ACTION/$APP_LONG_NAME"
           #mvn deploy -DskipTests -DaltDeploymentRepository=central::default::http://3.129.71.240:8081/artifactory/GEOLOCATION-GITHUB_ACTION -X #-Dusername=user -Dpassword=pass
       env:
         #GITHUB_TOKEN: ${{ github.token }}
@@ -81,4 +80,3 @@ jobs:
         GITHUB_USERNAME: ${{ github.actor }}
         MAVEN_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }} 
-        TOTO2: ${{ secrets.TOTO2 }}       
